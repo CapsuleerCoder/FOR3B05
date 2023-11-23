@@ -116,11 +116,11 @@ while True:
                 count += 1
                 print ("Taflan okkar hingað til :", ný_tafla)
             print ("Taflan lítur svona út: ", ný_tafla)
-            summa = summa_lykla(ný_tafla)
+            summa_lyklana = summa_lykla(ný_tafla)
         else:
             print ("Taflan lítur svona út: ", upflettitafla_tölur)
-            summa = summa_lykla()  
-        print ("Samtals er þetta: ", summa)
+            summa_lyklana = summa_lykla()  
+        print ("Summa lykla er: ", summa_lyklana)
 
 
 
