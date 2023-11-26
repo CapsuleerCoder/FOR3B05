@@ -14,10 +14,8 @@ def sum(a, b):
         return a+b
     except TypeError:
         return "Rangur innsláttur"
-
 innsláttur1 = "svar"
 innslátttur2 = 3
-
 svar = sum(innsláttur1, innslátttur2)
 print (svar)
 

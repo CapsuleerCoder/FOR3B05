@@ -40,8 +40,8 @@ def summa_orðabók(tafla=upflettitafla_tölur):
     return total
 def summa_lykla(tafla=upflettitafla_tölur):
     total = 0
-    for i in tafla:
-        total += i
+    for key in tafla:
+        total += tafla[key]
     return total
     
 
@@ -120,7 +120,7 @@ while True:
         else:
             print ("Taflan lítur svona út: ", upflettitafla_tölur)
             summa_lyklana = summa_lykla()  
-        print ("Summa lykla er: ", summa_lyklana)
+        print ("Summa Gilda er: ", summa_lyklana)
 
 
 
