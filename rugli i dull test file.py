@@ -19,17 +19,15 @@
 
 #     print (string)
 
-listinn = [[], [], []]
+# listinn = [[], [], []]
 
-for t in range(9):
-    if t % 2 == 0:
-        listinn[t%3].append("X")
-    if t % 2 != 0:
-        listinn[t%3].append("O")
-for x in range(3):
-    print (*listinn[x], sep="")
-
-
+# for t in range(9):
+#     if t % 2 == 0:
+#         listinn[t%3].append("X")
+#     if t % 2 != 0:
+#         listinn[t%3].append("O")
+# for x in range(3):
+#     print (*listinn[x], sep="")
 
 
 
