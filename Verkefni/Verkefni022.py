@@ -1,7 +1,7 @@
 
 #Dæmi A
 def lesa_tesla():
-    with open ("/home/olidb/Forritun/Tesla.txt", "r") as skrá:
+    with open ("Tesla.txt", "r") as skrá:
         for line in skrá:
             orðalisti = line.split()
             for orð in orðalisti:
@@ -15,7 +15,7 @@ def lesa_tesla():
     return "og það er lokatalning"
 #Dæmi C 
 def lesa_Borges():
-    with open("/home/olidb/Forritun/Borges.txt", "r") as borges:
+    with open("Borges.txt", "r") as borges:
         for line in borges:
             orðalisti = line.split()
             for orð in orðalisti:
@@ -25,28 +25,46 @@ def lesa_Borges():
                 else:
                     orðabók[strippað_orð] = 1
     Lengd = sum(orðabók.values())
-    print ("Það eru", Lengd, "orð í skjali")
     Algengast_orð = max(orðabók, key=orðabók.get)
-    print ("Algengasta orðið er ", Algengast_orð)
-    print (orðabók)
-
-
-
-
-
+    Algengast_tilfelli = orðabók[Algengast_orð]
+    return Lengd, Algengast_orð, Algengast_tilfelli
+def lesa_bæði():
+    borges_list = []
+    tesla_list = []
+    with open("Borges.txt","r") as borges:
+        for line in borges:
+            borges_orð = line.split()
+            for orðb in borges_orð:
+                strippað = orðb.strip(", .")
+                borges_list.append(strippað)
+            borges_list_set = set(borges_list)
+    with open("Tesla.txt", "r") as tesla:
+        for line in tesla:
+            tesla_orð = line.split()
+            for orðt in tesla_orð:
+                stripped = orðt.strip(", .")
+                tesla_list.append(stripped)
+            tesla_list_set = set(tesla_list)
+    sniðmengi = borges_list_set & tesla_list_set
+    
+    return sniðmengi
 while True:
     print ("Veldu 1 til að lesa Tesla.txt og telja orð. ")
     print ("Veldu 2 til að lesa Borges.txt og telja orð. ")
+    print ("Veldu 3 til að fá orðin sem eru í báðum skrám")
     svar = input(":")
     orðabók = {}
     if svar == "1":
         keyra_fall_A= lesa_tesla()
         print(keyra_fall_A)
     if svar == "2":
-        keyra_fall_b = lesa_Borges()
-        print (keyra_fall_b)
-
-
+        keyra_fall_c = lesa_Borges()
+        print (f"Það eru {keyra_fall_c[0]} orð í skjalinu")        
+        print (f"Algengasta orðið er {keyra_fall_c[1]}")
+        print (f"Það kemur fyrir {keyra_fall_c[2]} sinnum")
+    if svar == "3":
+        keyra_fall_d = lesa_bæði()
+        print (f"orðin sem eru í báðum eru" *"{keyra_fall_d}")
 
 
 
