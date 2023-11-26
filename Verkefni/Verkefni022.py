@@ -46,7 +46,8 @@ def lesa_bæði():
                 tesla_list.append(stripped)
             tesla_list_set = set(tesla_list)
     sniðmengi = borges_list_set & tesla_list_set
-    
+    #stal set af Atla því ég hef ekki hugmynd hvað mengi er, 
+    # myndi annars nota for loop til að mynda lista úr báðum
     return sniðmengi
 while True:
     print ("Veldu 1 til að lesa Tesla.txt og telja orð. ")
@@ -64,7 +65,7 @@ while True:
         print (f"Það kemur fyrir {keyra_fall_c[2]} sinnum")
     if svar == "3":
         keyra_fall_d = lesa_bæði()
-        print (f"orðin sem eru í báðum eru" *"{keyra_fall_d}")
+        print (f"orðin sem eru í báðum eru {keyra_fall_d}")
 
 
 
