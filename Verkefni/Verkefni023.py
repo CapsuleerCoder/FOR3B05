@@ -1,5 +1,3 @@
-
-
 class Hundur:
     def __init__(self, nafn, aldur):
         self.nafn = nafn
