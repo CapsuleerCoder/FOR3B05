@@ -2,7 +2,7 @@
 # tala = int(input("Veldu tölu, helst 42:"))
 # print ("The answer to life, the universe, and everything is ", tala)
 
-# #Dæmni 2 - Mismunur
+# #Dæmi 2 - Mismunur
 # tala_1 = int(input("veldu tölu: "))
 # tala_2 = int(input("Veldu tölu til að draga frá fyrri: "))
 # print (tala_1, "-", tala_2, "=", tala_1-tala_2)
