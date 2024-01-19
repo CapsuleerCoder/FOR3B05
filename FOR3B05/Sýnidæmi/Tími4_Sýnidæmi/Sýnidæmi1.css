@@ -1,0 +1,30 @@
+
+body
+{
+	margin: 0 auto;
+	width: 960px;
+}
+
+div
+{
+	border: 5px dotted red;
+	margin: 10px 20px 20px 10px;
+	padding: 5px;
+	text-align: justify;
+}
+
+h1
+{
+	text-align: center;
+}
+
+.footer
+{
+	margin-top: 400px;
+	text-align: left;
+}
+
+#malsgrein
+{
+	color: red;
+}
