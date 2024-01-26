@@ -1,0 +1,54 @@
+body
+{
+	margin: 0 auto;
+	width: 960px;
+	background-color: rgb(252, 255, 214);
+}
+
+table
+{
+	border-collapse: collapse;
+}
+
+td
+{
+	
+	border: 1px solid black;
+	
+}
+
+th
+{
+	width: 25px;
+	height: 25px;
+}
+
+.header
+{
+	position: absolute;
+	top: 10px;
+	right: 790px;
+}
+
+.nav
+{
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	background-color: orange;
+}
+
+.main
+{
+	width: 756px;
+	height: 200px;
+	background-color: orange;
+}
+
+.empty
+{
+	width: 100px;
+	height: 200px;	
+	border: none;
+	
+}
