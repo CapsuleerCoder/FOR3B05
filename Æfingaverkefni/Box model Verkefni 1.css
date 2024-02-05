@@ -1,0 +1,42 @@
+
+
+
+
+body
+{
+    margin: 0 auto;
+    width: 960px;
+}
+
+div
+{
+    margin: 40px; 
+    padding: 25px;
+
+}
+.top
+{
+    border: 2px solid black;
+    border-radius: 15px   ;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 600 ;
+}
+.texti
+{
+    border: 2.5px dotted green;
+    border-radius: 0px
+}
+
+.botn
+{
+    
+    margin:150px 40px;
+    border: 2px solid blue;
+    border-radius: 0px
+}
+
+
+
+
+

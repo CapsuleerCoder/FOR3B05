@@ -1,0 +1,51 @@
+
+body
+{
+	margin: 0 auto;
+	width: 960px;
+}
+
+div
+{
+	border: 1px solid black;
+	margin: 50px;
+	padding: 25px;
+	text-align: justify;
+}
+
+.wrapper
+{
+	overflow: hidden;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+h1
+{
+	text-align: center;
+
+}
+
+.header
+{
+	border-radius: 25px;
+}
+
+.main
+{
+	float: left;
+	width: 350px;
+}
+
+.aside
+{
+	float: left;
+	width: 306px;
+}
+
+.footer
+{
+	/*clear: both;*/
+	text-align: left;
+}

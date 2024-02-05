@@ -1,0 +1,46 @@
+
+body 
+{
+	margin: 0 auto;
+	width: 960px;
+}
+
+ul
+{
+	list-style-type: none;
+	padding: 0;
+}
+
+ul li
+{
+	font-size: 30px;
+	/*width: 250px;	*/
+	padding: 15px;
+	/*display: inline;*/
+	/*position: relative;*/
+	float: left;
+}
+
+/*ul a
+{
+	display: block;
+	width: 250px;
+}*/
+
+ul ul
+{
+	display: none;
+	/*position: relative;
+	left: 30px;*/
+}
+
+ul li:hover ul
+{
+	display: block;
+}
+
+a:hover
+{
+	color: white;
+	background-color: blue;
+}

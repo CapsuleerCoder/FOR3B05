@@ -1,0 +1,26 @@
+
+div
+{
+	margin: 20px;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.grid-item-special 
+{ 
+	background-color: green;
+	grid-area: 1 / 1 / span 1 / span 2; 
+}
+
+.grid-item
+{
+	background-color: orange;
+}
+
+.grid-container
+{
+	background-color: purple;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: auto auto auto;		
+}
