@@ -1,0 +1,33 @@
+
+
+body
+{
+    margin: 0 auto;
+    width: 70%; 
+}
+ul
+{
+    padding: 0;
+}
+ul li
+{
+    font-size: 25px;
+    padding: 15px;
+}
+
+a:hover
+{
+    color: white;
+    background-color: blue;
+}
+
+
+ul li:hover ul
+{
+	display: block;
+}
+
+ul ul
+{
+	display: none;
+}

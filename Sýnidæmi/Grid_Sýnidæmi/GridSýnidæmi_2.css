@@ -1,0 +1,20 @@
+
+div
+{
+	border: 1px solid black;
+}
+
+.grid-container
+{
+	display: grid;
+	height: 100vh;
+	grid-template: 20% 60% 20% / 20% 60% 20%;
+}
+
+.grid-header { grid-column: 1 / 4; background-color: red;}
+.grid-left { grid-column: 1 / 2; background-color: green;}
+.grid-main { grid-column: 2 / 3; background-color: orange;}
+.grid-right { grid-column: 3 / 4; background-color: azure;}
+.grid-footer { grid-column: 1 / 4; background-color: coral;}
+
+.grid-container > div { text-align: center; padding: 50px;}

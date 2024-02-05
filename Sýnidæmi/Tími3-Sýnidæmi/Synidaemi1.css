@@ -1,0 +1,26 @@
+
+body
+{
+	background-color: rgb(0, 150, 0);
+}
+
+h1
+{
+	font-family: Garamond, serif;
+}
+
+a:hover
+{
+	color: red;
+}
+
+span
+{
+	color: blue;
+}
+
+ul, p
+{
+	background-color: rgba(255, 255, 255, 0.5);
+	font-family: Calibri, sans-serif;
+}
