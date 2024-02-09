@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Synidaemi4</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Notið inspect og veljið svo console til að sjá virkni kóðans </h1>
+
+	<script type="text/javascript">
+		var z = 2; // global breyta		
+		function fall(){
+			x = 3; // x er global breyta, því ef við skilgreinum breytu án lykilorðsins var þá verður hún sjálfkrafa global
+			var z = 4; // staðbundin breyta, hér gerist það sama ef við notum let í stað var
+			console.log(z); // mun skrá 4 á console
+		}
+
+		fall();	// skráir 4 á console
+		console.log(z); // skráir 2 á console
+		console.log(x); // skráir 3 á console, x er aðgengilegt hér því það er global breyta
+
+		// hvað gerist ef við notum let x = 3; inní fallinu ?
+		// jú það hefur sömu áhrif og að nota var x = 3;
+		function fall_2(){
+			let x = 5; // x er hér staðbundin, því hún er skilgreind með let og gildissvið hennar
+			// er því bundið við kóðablokkina (sem afmarkast af slaufusviganum eða {} ) sem hún er í
+			var z = 4; // staðbundin breyta, hér gerist það sama ef við notum let í stað var
+			console.log(z); // mun skrá 4 á console
+		}
+
+		fall_2(); // skráir 4 á console
+		console.log(x); // skráir 3 á console
+
+	</script>
+</body>
+</html>

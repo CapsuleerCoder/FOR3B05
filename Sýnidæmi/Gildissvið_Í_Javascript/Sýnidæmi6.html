@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sýnidæmi6</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Notið inspect og veljið svo console til að sjá virkni kóðans </h1>
+
+	<script type="text/javascript">
+		 
+		function test()
+		{
+		    if (x > 20) {
+		        var x = 50;
+		    }
+					    
+		    console.log(x); // skráir undefined út á console		    
+
+		    // hér má vera að hegðun javascript komi á óvart, en svarið liggur í hinu svokallaða
+		    // "hoisting" , jafnvel þó að x > 20 sé rangt og keyrsla forritsins fari ekki inn í grein
+		    // if setningarinnar, þá "veit" eða lítur javascript samt svo á að breytan hafi verið skilgreind
+		    // en henni hefur hinsvegar ekki verið gefið gildi
+		    // sem sagt skilgreining local breytunnar x hefur farið fram, en ekki gildisveiting hennar
+		    // en það er þess vegna sem við fáum undefined en ekki ReferenceError sem gerist þegar 
+		    // reynt er að kalla á breytu sem var aldrei skilgreind
+
+		}		
+		test();
+
+
+	</script>
+</body>
+</html>
+

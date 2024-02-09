@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<title>Synidaemi2</title>
+	<meta charset="utf-8"/>
+	
+</head>
+<body>
+
+	<br>
+	Login
+	<input type="password" id="pw">
+	<button id="btn">Ok</button>
+	
+	<script type="text/javascript">
+				
+		let password = "12345"; // lykilorðið sem notandi þarf að slá inn er skilgreint/harðkóðað hér
+		document.getElementById("btn").onclick = function(){  // fallið er atburðahöndlari click atburðarins
+			let lykilord = document.getElementById("pw").value; // gildi textaboxins sótt
+			if (lykilord == "12345")
+			{
+				window.location.href = "http://www.ru.is";
+			}
+			else
+			{
+				alert("Þú hefur ekki aðgang!");
+			}
+		};
+
+		document.getElementById("pw").onkeypress = function(e){	// e er atburðurinn sem fallið höndlar, hér er það semsagt keypress atburðurinn	
+			if (e.key == "Enter") // ef key property e hlutarins er "Enter" þá þýðir það að notandi ýtti á enter
+			{
+				let lykilord = document.getElementById("pw").value;
+				if (lykilord == "12345")
+				{
+					window.location.href = "http://www.ru.is";
+				}
+				else
+				{
+					alert("Þú hefur ekki aðgang!");
+				}
+			}
+		};
+
+	</script>
+</body>
+</html>

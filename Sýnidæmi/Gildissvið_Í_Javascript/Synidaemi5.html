@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Synidaemi5</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Notið inspect og veljið svo console til að sjá virkni kóðans </h1>
+
+	<script type="text/javascript">
+
+		function test(){ 
+			var a = 2; 
+			console.log(a); // Skráir 2 á console  
+			for (var i = 1; i < 10; i++) 
+			{ 
+			     
+			} 
+			console.log(i); // Skráir 10 á console, takið eftir að i er enn til þó við séum komin út úr forlykkjunni
+			} 
+		test();
+
+		var scope = "global"; 
+		function test2(){ 
+			console.log(scope); // Skráir "undefined" en ekki global 
+			var scope = "local"; // Breytan er frumstillt hér, en skilgreind allstaðar í fallinu, kallað hoisting 
+			console.log(scope); // Skráir "local" 
+			// Af þessum sökum er oft gott að skilgreina allar breytur í byrjun falls svo auðveldara sé að skilja kóðann 			
+		} 
+		test2(); 
+
+		/*
+		Breyta sem skilgreind er inni í miðju falli er sem sagt til strax í byrjun (hífð eða á ensku „hoisted“ upp í topp fallsins) falls. Hinsvegar lýtur gildisveiting ekki sömu lögmálum, gildisveitingin í test2 fallinu verður ekki fyrr en í línunni þar sem segir: 
+		var scope = "local"; 
+		Þar fékk breytan scope gildi sitt en javascript lítur svo á að hún hafi verið til strax í byrjun fallsins. Þessvegna skráðist „undefined“ en ekki global, console.log(scope) var að skrá staðbundnu breytuna en ekki þá víðværu. 
+		Athugið einnig að ef scope hefði í fallinu test2 verið skilgreint með let eða const í stað var, þá hefði ekki komið undefined heldur ReferenceError því þá verður breytan ekki "hífð" eða hoisted upp í byrjun falls
+		*/
+
+		console.log(x); // hér er sama uppi á teningnum, á console kemur "undefined" því breytan x er nú þegar orðin til en gildisveitingin verður ekki fyrr en í næstu línu
+		var x = 2;
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript verkefni</title>
+    <link rel="stylesheet" type="text/css" href="javascript1.css">
+</head>
+<body>
+    <br>
+    <p>ChatBot Par excellence</p>
+    <br>
+    <input type = "message_window" id = "message">
+    <br>
+    <button id = "buttn" > Senda Skilaboð </button>
+    <br>
+    <textarea disabled id = "text_output"></textarea>
+    <br>
+    <p class="no_lower">Nokkrir ættingjar Botsins.</p>
+    
+    <button onclick="Siri()" >Siri</button>
+    <br>
+    <button onclick="Cortana()">Cortana</button>
+    <script type = "text/javascript">
+        let check = function(e) {
+            if ((e.type == "keypress" && e.key == "Enter") || e.type == "click")
+            {
+                let msg = document.getElementById("message").value;
+                if (msg.toUpperCase() == "HALLÓ")
+                {
+                   var reply = document.getElementById("text_output").value = msg; 
+                }
+                else if (msg == "hvað heitir þú?")
+                {
+                    var reply = document.getElementById("text_output").value = "Það á eftir að velja nafn mitt, en það verður a.m.k. ekki Siri eða Cortana."
+                }
+                else if (msg == "bless")
+                {
+                    var reply = document.getElementById("text_output").value = "bless bless."
+                }
+                else 
+                {
+                    var reply = document.getElementById("text_output").value = "Rangur innsláttur"
+                }
+            }
+        }
+        document.getElementById("message").addEventListener("keypress", check);
+        document.getElementById("buttn").addEventListener("click", check);
+        function Siri() {
+            let text = "Veldu Ok til að færast yfir á Wikipedia Siri, eða cancel til að opna nýjan glugga";
+            if (confirm(text) == true) {
+                window.open("https://en.wikipedia.org/wiki/Siri", "_self")
+            }
+            else {
+                window.open("https://en.wikipedia.org/wiki/Siri")
+            }
+        }
+        function Cortana() {
+            let text = "Veldu Ok til að færast yfir á Wikipedia Cortana, eða cancel til að opna nýjan glugga";
+             if (confirm(text) == true) {
+            window.open("https://en.wikipedia.org/wiki/Cortana_(virtual_assistant)", "_self")
+            }
+            else {
+                window.open("https://en.wikipedia.org/wiki/Cortana_(virtual_assistant)")
+            }
+        }    
+    </script>
+
+    
+</body>
+</html>
