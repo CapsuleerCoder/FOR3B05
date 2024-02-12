@@ -1,0 +1,137 @@
+.atvinna{
+    width: 560px;
+    height: 315px;
+
+}
+
+.imger{
+    background-color: black;
+    color: white;
+    border: solid black 5px;
+}
+
+.header{
+    text-align: left;
+    background-color: antiquewhite;
+    padding: 10px;
+    width: 100%;
+}
+
+.nav{
+    left: 5px;
+    font-size: 2em;
+    padding: 10px;
+    background-color: rgb(209, 193, 169);
+    width: 100%;
+}
+ul li{
+    display: inline; 
+
+}
+
+
+body{
+    background-color:wheat ;
+    font-family:  sans-serif;
+
+}
+
+.middle{
+    margin: 50px;
+
+}
+.img-w-text{
+    margin: 50px;
+
+}
+
+h1{
+    font-size: 45px;
+    color: black;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+
+.front{
+
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    width: 20%;
+    text-align: center;
+}
+
+.nav a:hover{
+    color: blue;
+}
+
+.frontt{
+    float: right;
+    position: relative;
+    margin: 25px;
+}
+.atvinna {
+    float: left;
+    position: relative;
+    margin: 35px;
+}
+
+p{
+    text-align: justify;
+    font-size: 25px;
+}
+
+.saga{
+    width: 460px;
+    height: 380px;
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid grey;
+    background-color: whitesmoke;
+    
+}
+.caption {
+    display: block;
+    margin: 10px;
+    background-color: blanchedalmond;
+    padding: 10px;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    width: 460px;
+    
+}
+
+
+.links{
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 560px;
+    height: 360px;
+    margin: 25px;
+
+}
+
+.captiony {
+    display: block;
+    margin: 10px;
+    background-color: blanchedalmond;
+    padding: 10px;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    width: 560px;
+}
+
+.foter{
+    background-color: antiquewhite;
+    width: 100%;
+    padding: 5px;
+    text-align: left;
+    text-indent: 5em;
+}
