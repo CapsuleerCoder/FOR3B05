@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Const Sýnidæmi 1</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<button id="breyta_gildi">breyta_gildi</button>	
+	<button id="breyta_gildi_hlutar">breyta_hlut</button>
+	<button id="breyta_hlut_sjálfum">breyta_hlut</button>
+
+	<p id="tilraun"></p>
+
+	<script type="text/javascript">
+		
+		document.getElementById("breyta_gildi").addEventListener('click', breyta_gildi);
+		document.getElementById("breyta_gildi_hlutar").addEventListener('click', breyta_gildi_hlutar);
+		document.getElementById("breyta_hlut_sjálfum").addEventListener('click', breyta_hlut_sjálfum);
+
+		function breyta_gildi() {
+			try {
+			  const PI = 3.141592653589793;
+			  PI = 3.14;
+			  // við fáum ekki að breyta fasta sem vísar á frumstæða breytu
+			} catch (err) {
+			  document.getElementById("tilraun").innerHTML = err;
+			}
+		}
+
+		function breyta_gildi_hlutar() {
+			try {
+				const car = { maker: "Toyota", type: "Auris", color: "white"};
+				// við megum breyta gildi hlutar, það er aðeins tilvísunin sem er fasti
+				car.color = "red";
+				document.getElementById("tilraun").innerHTML = "Litur bíls er nú: " + car.color;
+			} catch (err) {
+				document.getElementById("tilraun").innerHTML = err;
+			}
+		}
+
+		function breyta_hlut_sjálfum() {
+			try {
+				const car = { maker: "Toyota", type: "Auris", color: "white"};
+				// við fáum ekki að breyta tilvísuninni í hlutin, hún er fasti
+				car = { maker: "Toyota", type: "Yaris", color: "black" };
+			} catch (err) {
+				document.getElementById("tilraun").innerHTML = err;
+			}
+		}
+
+		
+		
+	</script>
+</body>
+</html>

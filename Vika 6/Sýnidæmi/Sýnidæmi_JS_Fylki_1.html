@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Synidaemi2</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		body{margin: 0 auto;width: 960px;}
+	</style>
+</head>
+<body>
+	<br><br>
+	<input type="text" id="add">
+	<ul id="starfsmenn">
+		<li>Jón</li>
+		<li>Helgi</li>
+		<li>Arnar</li>
+	</ul>
+
+	<script type="text/javascript">
+		
+		var listi = ['Jón', 'Helgi', 'Arnar'];
+
+		function addEmployee(e){
+			var newEmployee = document.getElementById('add').value;
+			// listann yfir möguleg gildi fyrir event.key má finna hér:
+			// https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values
+			if (e.key == "Enter")
+			{
+				listi.push(newEmployee);
+				document.getElementById('starfsmenn').innerHTML += '<li>'+newEmployee+'</li>';
+			}
+		}
+
+		document.getElementById('add').addEventListener('keypress', addEmployee);
+
+	</script>
+</body>
+</html>

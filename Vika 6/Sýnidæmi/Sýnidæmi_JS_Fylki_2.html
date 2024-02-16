@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Synidaemi3</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		body{margin: 0 auto;width: 960px;}
+	</style>
+</head>
+<body>
+	<br><br>
+	<input type="text" id="add">
+	<ul id="starfsmenn">
+		<li>Jón</li>
+		<li>Helgi</li>
+		<li>Arnar</li>
+	</ul>
+	<br>
+	<button id="hide">Fela lista</button>
+	<button id="show">Sýna lista</button>
+
+	<script type="text/javascript">
+		
+		var listi = ['Jón', 'Helgi', 'Arnar'];
+		var flagg = true;
+
+		function addEmployee(e){
+			var newEmployee = document.getElementById('add').value;
+			if (e.key == "Enter")
+			{
+				listi.push(newEmployee);
+			}
+			if (flagg === true)
+			{
+				showEmployees();
+			}
+		}
+
+		function hideEmployees(){
+			document.getElementById('starfsmenn').innerHTML = '';
+			flagg = false;
+		}
+
+		function showEmployees(){
+			var employees = document.getElementById('starfsmenn');
+			employees.innerHTML = '';
+			for (var i=0; i<listi.length; i++)
+			{
+				employees.innerHTML += '<li>'+listi[i]+'</li>';
+			}
+			flagg = true;
+		}
+
+		document.getElementById('add').addEventListener('keypress', addEmployee);
+		document.getElementById('hide').addEventListener('click', hideEmployees);
+		document.getElementById('show').addEventListener('click', showEmployees);
+
+	</script>
+</body>
+</html>

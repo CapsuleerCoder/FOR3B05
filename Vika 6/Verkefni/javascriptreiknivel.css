@@ -1,0 +1,27 @@
+
+
+
+
+
+body{
+    background-color: lightyellow;
+    margin: 0 auto ;
+    width: 960px;
+}
+
+.calcul{
+    margin-left: 150px;
+    margin-top: 25px;
+    width: 400px;
+}
+
+input {
+    width: 200px;
+}
+textarea {
+    width: 200px;
+}
+
+button {
+    
+}
