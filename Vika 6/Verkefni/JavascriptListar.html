@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascriptlists</title>
+    <link rel="stylesheet" type="text/css" href="javascriptlistar.css">
+</head>
+
+<body>
+    <div>
+        <br><br>
+        <input type="text" id="worker">
+        <button id="add">Bæta við stafsmanni</button>
+        <button id="remove">Fjarlægja starfsmann</button>
+        <button id="show_list">Sýna stafsmannalista</button>
+        <button id="hide_list">Fela starfsmannalista</button>
+
+        <br>
+        <h1>Starfsmannalisti</h1>
+        <ul id="workerlist">
+            <li>Jón</li>
+            <li>Helgi</li>
+            <li>Arnar</li>
+        </ul>
+
+    </div>  
+
+    <script>
+        var list_workers = ["Jón", "Helgi", "Arnar"];
+        var flagg =true;
+
+        function addEmploye(e) {
+            var newEmployee = document.getElementById("worker").value;
+            if (e.type == "keypress" && e.key == "enter")
+            {
+                list_workers.push(newEmployee);
+            }
+            if (flagg === true)
+            {
+                showEmployees();
+            }
+        }
+
+        function hideEmployees() {
+            document.getElementById("workerlist").innerHTML = "";
+            flagg = false;
+        }
+
+        function showEmployees() {
+            document.getElementById("workerlist");
+            employees.innerHTML = ""; 
+            for (var i=0; i < list_workers.length; i++)
+            {
+                employees.innerHTML += "<li>"+listi[i]+"</li>";
+
+            }
+            flagg = true
+        }
+
+    
+    document.getElementById("worker").addEventListener("keypress", addWorker)
+    document.getElementById("worker").addEventListener("keypress", addWorker)
+    document.getElementById("worker").addEventListener("keypress", addWorker)
+    </script>
+
+
+
+    
+</body>
+</html>
+
+
+
+
+

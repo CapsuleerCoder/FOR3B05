@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Synidaemi4</title>
+	<meta charset="utf-8"/>
+	<style type="text/css">
+		body{margin: 0 auto;width: 960px;}
+	</style>
+</head>
+<body>
+	
+	<canvas width="800" height="600" style="border: 1px solid black;" id="myCanvas"></canvas>
+
+	<script type="text/javascript">
+		
+		var c = document.getElementById('myCanvas');
+		var ctx = c.getContext("2d");
+
+		ctx.beginPath();
+		ctx.fillStyle = "#0000FF";
+		ctx.fillRect(0, 0, 800, 600);
+		ctx.stroke();
+				
+		ctx.beginPath();		
+		ctx.arc(250, 100, 50, 0, 2*Math.PI);
+		ctx.fillStyle = "#FFFF00";
+		ctx.fill();
+		ctx.stroke();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jafngildispróf</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<p>
+		Er "2" það sama og 2?
+		<button id="'2'_jafnt_og">Tjékka ==</button>
+	</p>
+	<p>
+		Er "2" það sama og 2?
+		<button id="heiltalan_2_jafnt_og">Tjékka ===</button>
+	</p> 
+
+	<script type="text/javascript">
+		
+		document.getElementById("'2'_jafnt_og").onclick = function() {
+			if ("2" == 2)
+			{
+				alert("Ekki sama týpa en eftir kast eða breytingu þannig að gagnatög séu þau sömu þá er það sami hlutur.")
+			}
+			else
+			{
+				alert("Villa!")
+			}
+		}
+		
+		document.getElementById("heiltalan_2_jafnt_og").onclick = function() {
+			if ("2" === 2)
+			{
+				alert("Villa!")
+			}
+			else
+			{
+				alert("Sama talan, en strengur er ekki það sama og heiltala.")
+			}
+		}
+		
+	</script>
+
+</body>
+</html>
