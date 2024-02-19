@@ -12,7 +12,7 @@
 <body>
     <div>
         <br><br>
-        <input type="text" id="worker">
+        <input type="text" id="text">
         <button id="add">Bæta við stafsmanni</button>
         <button id="remove">Fjarlægja starfsmann</button>
         <button id="show_list">Sýna stafsmannalista</button>
@@ -22,48 +22,72 @@
         <h1>Starfsmannalisti</h1>
         <ul id="workerlist">
             <li>Jón</li>
-            <li>Helgi</li>
+            <li>Helgi</li> 
             <li>Arnar</li>
         </ul>
 
     </div>  
 
-    <script>
-        var list_workers = ["Jón", "Helgi", "Arnar"];
-        var flagg =true;
+    <script type="text/javascript">
+        var list_workers = ["Jón", "Helgi", "Arnar"]; //List variable//
+        var flagg =true;            // boolean variable set to true //
 
-        function addEmploye(e) {
-            var newEmployee = document.getElementById("worker").value;
-            if (e.type == "keypress" && e.key == "enter")
+        function addWorker(e) {
+            var newWorker = document.getElementById("text").value;      //checks the "text" input box and saves the content of it as a variable//
+            if (e.type == "click")                   // Checks if it is clicked or not, is unnecessary along with e in addworker(e) in this case //
             {
-                list_workers.push(newEmployee);
+                list_workers.push(newWorker);           //puts the worker in the actual array//
             }
-            if (flagg === true)
+            if (flagg === true)     //checks if variable is true, if true(list is showing on website), run the following, else not//
             {
-                showEmployees();
+                showWorker();            //runs the showWorker function which adds the worker to the list shown on the actual webpage//
             }
         }
 
-        function hideEmployees() {
-            document.getElementById("workerlist").innerHTML = "";
-            flagg = false;
-        }
-
-        function showEmployees() {
-            document.getElementById("workerlist");
-            employees.innerHTML = ""; 
-            for (var i=0; i < list_workers.length; i++)
+        function removeWorker() {
+            var removeWorker = document.getElementById("text").value;   //checks the "text" input box and saves the content of it as a variable//
+            for (i = 0; i < list_workers.length; i++)               // for loop, goes through list_workers length, adds 1 every time//
             {
-                employees.innerHTML += "<li>"+listi[i]+"</li>";
+                checkindex = list_workers[i]                // new variable containing the array item of current numbered i in the loop
+                if (removeWorker == checkindex)                // an if statment checking if removeWorker variable is equal to the current index of the workerlist
+                {
+                    list_workers.splice(i, 1);                  // if  above statement is equal then it removes the currently i index from workerlist
+                    break                                        // and then breaks the for loop
+                }
+                else               
+                {
+                    continue                //continues the for loop, weirldy this seems necessary. 
+                }
 
             }
-            flagg = true
+            if (flagg === true)             //checks if flagg is true or "up" if so it runs the function showworker
+            {
+                showWorker();       //runs the showWorker function which adds the worker to the list shown on the actual webpage//
+            }
+
+        }
+
+        function hideWorker() {      // hides the list shown on webpage, has no effect on actual list// 
+            document.getElementById("workerlist").innerHTML = "";      //works by deleting the list shown on webpage essentially.//
+            flagg = false;          // also puts the flag to false so that the  if true flag variable in addworker is not run //
+        }
+
+        function showWorker() {         // shows the list shown on webpage, has no effect on actual list, does this by deleting and then recreating it from the actual list//
+            var employees = document.getElementById("workerlist");     // creates a variable that accesses the workerlist  on html page  
+            employees.innerHTML = "";       // neccessary, deletes the list on webpage. 
+            for (var i=0; i < list_workers.length; i++)   // for loop, starts at 0 which is i, if i less than real list then continue, adds 1 value to i at end//
+            {
+                employees.innerHTML += "<li>"+list_workers[i]+"</li>";  //every for loop it adds a worker from list_worker into the html list//
+
+            }
+            flagg = true    //sets flag to true, so new workers get added to the html list too//
         }
 
     
-    document.getElementById("worker").addEventListener("keypress", addWorker)
-    document.getElementById("worker").addEventListener("keypress", addWorker)
-    document.getElementById("worker").addEventListener("keypress", addWorker)
+    document.getElementById("add").addEventListener("click", addWorker)     // getelementbyid = what element its looking at//
+    document.getElementById("remove").addEventListener("click", removeWorker) //eventlistener(x = what to listen to)//
+    document.getElementById("hide_list").addEventListener("click", hideWorker) // eventlisterner(x, y=what to do once x is heard) //
+    document.getElementById("show_list").addEventListener("click", showWorker) 
     </script>
 
 
