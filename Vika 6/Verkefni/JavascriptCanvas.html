@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="javascriptCanvas.css">
+</head>
+<body>
+    <div>
+    <canvas id="Mynd" width="400" height="400"> <!--Býr til Canvas, striga til að teikna á.-->
+
+
+
+    
+    </canvas>
+    </div>
+
+        <script>
+
+            const Drawing = document.getElementById("Mynd")  // sækir canvas sem breytu//
+            const c = Drawing.getContext("2d")              // segir að canvas breytan sé 2d, getur líka verið 3d týpur//
+
+            c.fillStyle = "#8fdbf2";//blue//   
+            c.fillRect(0, 0, 400, 280)          
+            c.fillStyle = "red";
+            c.fillRect(40, 200, 80, 100) //fyrsta númer er frá vinstri, næsta númer er frá toppinum, //
+                                        //þriðja númer er stærð lárétt eða horizontal. //
+                                        //Fjórða númer er stærð lóðrétt eða vertical. //
+            c.fillStyle = "white";
+            c.fillRect(50, 210, 15, 15)
+            c.fillRect(50, 240, 15, 15)
+            c.fillRect(90, 210, 15, 15)
+            c.fillRect(90, 240, 15, 15);
+            c.fillStyle = "black";
+            c.fillRect(70, 260, 20, 20);
+            c.fillStyle = "#4af705"//green//
+            c.fillRect(0, 280, 400, 120)
+            c.fillStyle = "brown"
+            c.fillRect(180, 290, 15, 25)   
+            c.fillRect(340, 310, 20, 35)
+            c.fillStyle = "#4af705"
+            c.beginPath();              //þarf að byrja á þessu fyrir hringinn
+            c.arc(187.50, 270, 25, 0, 2 * Math.PI);         //fyrsti er frá vinstri hlið, seinni er frá toppnum niður á við
+            c.arc(350, 280, 35, 0, 2 * Math.PI);                        //3 talan segir til um hversu stór hringurinn er.
+            c.fillStyle = "#f70fc9"//puink    4 talan segir til um hvar start angle byrjar, 5 segir hvar það endar(hversu marga hringi)
+            c.fill();                               //segir að filla hvað sem var gert með lit    
+            c.beginPath();                                        
+            c.arc(180, 75, 25, 0, 2 * Math.PI);       
+            c.fillStyle = "yellow"
+            c.fill();
+
+
+            const drawCloud = (x, y) => {                       //stolin skýja kóði frá internetinu//
+                c.beginPath();
+                c.arc(x, y, 60/2, Math.PI * 0.5, Math.PI * 1.5);
+                c.arc(x + 70/2, y - 60, 70/2, Math.PI * 1, Math.PI * 1.85);
+                c.arc(x + 152/2, y - 45, 50/2, Math.PI * 1.37, Math.PI * 1.91);
+                c.arc(x + 200/2, y, 60/2, Math.PI * 1.5, Math.PI * 0.5);
+                c.moveTo(x + 200/2, y + 60/2);
+                c.lineTo(x, y + 60/2);
+                c.strokeStyle = '#797874';
+                c.stroke();
+                c.fillStyle = 'whitesmoke';
+                c.fill()
+            }
+            drawCloud(240,100);                         //stolin skýja kóði frá internetinu//
+            
+        </script>
+    
+    
+</body>
+</html>
+
+
+
+
+
+
+
