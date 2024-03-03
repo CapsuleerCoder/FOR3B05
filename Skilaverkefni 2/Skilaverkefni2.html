@@ -1,0 +1,241 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link rel="stylesheet" type="text/css" href="Skilaverkefni2.css">
+</head>
+<body>
+    <div id="can">
+        <canvas width="900" height="800" style="border: 2px solid black" id="myCanvas"></canvas>
+    </div>
+    <div id="buttons">    
+        <button id="circle">Hringur</button>
+        <button id="line">Lína</button>
+        <button id="square">Kassi</button>
+        <button id="thin">lítil þykkt</button>
+        <button id="medium">venjuleg þykkt</button>
+        <button id="thick">stór þykkt</button>
+        <button id="fill">Litur</button>
+        <button id="empty">Tómt</button>
+        <label for="colorpicker">Velja lit:</label>
+        <input type="color" id="colorpicker" value="#2525ff">
+        <button id="undo">Un-do</button>
+        <button id="redo">Re-do</button>
+    </div>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById("myCanvas");  
+        var ctx = canvas.getContext('2d');
+        var undobutton = document.getElementById("undo")
+        var redobutton = document.getElementById("redo")
+        var fillbutton = document.getElementById("fill")
+        var emptybutton = document.getElementById("empty")
+        var thinbutton = document.getElementById("thin")
+        var mediumbutton = document.getElementById("medium")
+        var thickbutton = document.getElementById("thick")
+        var colorinput = document.getElementById("colorpicker");
+        var circlebutton = document.getElementById("circle")
+        var linebutton = document.getElementById("line")
+        var squarebutton = document.getElementById("square")
+
+        canvas.addEventListener("mousedown", Start);
+        canvas.addEventListener("mouseup", add_item);
+        undobutton.addEventListener("click", Undo);
+        redobutton.addEventListener("click", Redo)
+        fillbutton.addEventListener("click", Fill)
+        emptybutton.addEventListener("click", Empty)
+        thinbutton.addEventListener("click", Thin)
+        mediumbutton.addEventListener("click", Medium)
+        thickbutton.addEventListener("click", Thick)
+        colorinput.addEventListener("input", Newcolor)
+        circlebutton.addEventListener("click", Circleshape)
+        linebutton.addEventListener("click", Lineshape)
+        squarebutton.addEventListener("click", Squareshape)
+
+        var action_forms = [];
+        var counter = 0;
+
+        var shape = "square";  //says what form the add_item function should draw
+        var start_x;  //begin X coordinates
+        var start_y;   //begin Y coordinates
+        var width;      //how wide
+        var height;     //how tall
+        var line_width = 1;
+        var colour = "#0052ff";
+        var is_Filled = false
+
+        class Square {
+            constructor(x1, y1, w, h, linew, fill_colour, isFilled) {
+                this.x1 = x1;
+                this.y1 = y1;
+                this.w =w;
+                this.h =h;
+                this.linew =linew;
+                this.fill_colour = fill_colour;
+                this.isFilled = isFilled;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.rect(this.x1, this.y1, this.w, this.h);
+                if (this.isFilled){
+                    ctx.fillStyle = this.fill_colour;
+                    ctx.fill();
+                } else {
+                    ctx.stroke();
+                }
+                ctx.lineWidth = this.linew;
+                ctx.closePath();
+            }
+        }
+        class Line {
+            constructor(x1, y1, x2, y2, linew, color, isFilled ) {
+                this.x1 = x1;
+                this.x2 = x2;
+                this.y1 = y1;
+                this.y2 = y2;
+                this.linew = linew;
+                this.color = color
+                this.isFilled = isFilled
+            }
+            
+                draw() {
+                    ctx.beginPath();
+                    ctx.moveTo(this.x1, this.y1);
+                    ctx.lineTo(this.x2, this.y2);
+                    ctx.lineWidth = this.linew;
+                    if (this.isFilled) {
+                        ctx.strokeStyle = this.color
+                        ctx.stroke();
+                        ;
+                    } else {
+                        ctx.stroke()
+                    }
+                    
+                    ctx.closePath()
+                }
+            
+        }
+        function Circleshape(event){
+            shape = "circle"
+        }
+        function Lineshape(event){
+            shape = "line"
+        }
+        function Squareshape(event){
+            shape = "square"
+        }
+        class Circle {
+            constructor(x, y, radius, linew, fill_colour, isFilled) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.linew = linew;
+                this.fill_colour = fill_colour;
+                this.isFilled = isFilled;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                if (this.isFilled) {
+                    ctx.fillStyle = this.fill_colour;
+                    ctx.fill();
+                } else {
+                    ctx.stroke();
+                }
+                ctx.lineWidth = this.linew;
+                ctx.closePath();
+            }
+        }
+        function Start(event) {
+            start_x = event.offsetX;
+            start_y = event.offsetY;
+        }
+        function Undo(event) {
+            counter--;
+            clear_redraw();
+        }
+        function Redo(event) {
+            if (counter < action_forms.length){
+                counter++;
+                clear_redraw()
+            } 
+        }
+        function Newcolor(){
+            colour = colorinput.value;
+        }
+        function clear_redraw(){
+            ctx.clearRect(0, 0, 900, 800)
+            for (let i = 0; i < counter; i++) {
+                action_forms[i].draw()
+            }
+        }
+        function Fill(event){
+            is_Filled = true
+        }
+        function Empty(event){
+            is_Filled = false
+        }
+        function clear_list(){
+            action_forms = action_forms.slice(0, counter)
+        }
+        function Thin(event){
+            line_width = 1
+        }
+        function Medium(event){
+            line_width = 3
+        }
+        function Thick(event){
+            line_width = 6
+        }
+
+
+
+        function add_item(event){
+            switch (shape)
+            {
+                case "square":
+                    clear_list()
+                    width = event.offsetX - start_x;
+                    height = event.offsetY  - start_y;
+                    new_square = new Square(start_x, start_y, width, height, line_width, colour, is_Filled);
+                    ctx.lineWidth = line_width
+                    action_forms.push(new_square);
+                    action_forms[counter].draw();
+                    counter++;
+                    break
+                case "circle":
+                    clear_list();
+                    let dx = event.offsetX - start_x;
+                    let dy = event.offsetY - start_y;
+                    radius = Math.sqrt(dx*dx +dy*dy);
+                    new_circle = new Circle(start_x, start_y, radius, line_width, colour, is_Filled);
+                    ctx.lineWidth = line_width;
+                    action_forms.push(new_circle);
+                    action_forms[counter].draw();
+                    counter++;
+                    break;
+                case "line":
+                    clear_list();
+                    end_x = event.offsetX
+                    end_y = event.offsetY
+                    new_line = new Line(start_x, start_y, end_x, end_y, line.width, colour, is_Filled)
+                    ctx.lineWidth = line_width;
+                    action_forms.push(new_line)
+                    action_forms[counter].draw();
+                    counter++;
+                    break
+            }
+        }
+
+
+        
+
+    </script>
+    
+</body>
+</html>

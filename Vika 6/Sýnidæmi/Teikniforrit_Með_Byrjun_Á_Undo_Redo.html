@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<title>Teikniforrit</title>
+	<meta charset="utf-8"/>
+</head>
+<body style="margin: 0 auto; width: 960px;">
+	<canvas width="900" height="700" style="border: 1px solid black;" id="myCanvas"></canvas><br>
+	<button id="hringur">Hringur</button>
+	<button id="lina">Lína</button>
+	
+	<script type="text/javascript">
+		var c = document.getElementById('myCanvas');
+		var ctx = c.getContext('2d');
+
+        var forms = [];
+        var teljari = 0;
+        // 1. Gera klasa fyrir kassa hringa og línur
+        // 2. Þegar notandi teiknar nýjan hlut þá verður til nýtt tilvik af einhverjum klasanum
+        // 3. Nýja tilvikinu er svo "ýtt" / "pushað" inn í forms fylkið
+        // 4. Aðalforritið kallar svo á draw/teinifall í nýja hlutnum/objectnum og hann teiknar sjálfan sig
+
+		var shape = "kassi"; // Breyta sem segir okkur hverskonar form á að teikna
+		var start_x; // Upphafshnit
+		var start_y; // Upphafshnit
+		var width; // Vídd ferhyrnings
+		var height; // Hæð ferhyrnings
+		var hringTakki = document.getElementById('hringur');
+
+		c.addEventListener('mousedown', start); // forritið hlustar eftir atburðinum mousedown (þ.e.a.s. að músatakka sé haldið niðri) og bregst við honum með svarfallinu start
+		c.addEventListener('mouseup', addShape); // sama og að ofan nema fyrir mouseup sem er þegar músatakka er sleppt og svarfallið er addShape
+		hringTakki.addEventListener('click', changeShapeToCircle);
+
+        class Ferhyrningur {
+            // smiðurinn
+            constructor(x1, y1, w, h) {
+                this.x1 = x1;
+                this.y1 = y1;
+                this.w = w;
+                this.h = h;
+            }
+            // teiknifall 
+            draw() {
+                ctx.beginPath();
+				ctx.rect(this.x1, this.y1, this.w, this.h);
+				ctx.stroke();
+				ctx.closePath();
+            }
+        }
+
+		function changeShapeToCircle() {
+			shape = "hringur";
+		}
+
+		function start(event) // Fall sem finnur byrjunarhnitið
+		{
+			
+			start_x = event.offsetX;
+			start_y = event.offsetY;
+		}
+
+		function addShape(event) // Fall sem bætir við formum(ferhyrningum)
+		{						
+			switch (shape)
+			{
+				case "kassi":				
+				width = event.offsetX - start_x; // event.offsetX er staðsetning músarbendilsins á x-ás þegar atburðurinn sem kom fallinu af stað varð
+				height = event.offsetY - start_y; // event.offsetY er staðsetning músarbendilsins á y-ás þegar atburðurinn sem kom fallinu af stað varð
+				nýr_kassi = new Ferhyrningur(start_x, start_y, width, height);
+                forms.push(nýr_kassi);
+                forms[teljari].draw();
+                teljari++;
+				break;
+				case "hringur":
+				// einhver kóði sem teiknar hring
+				break;
+				case "lina":
+				// einhver kóði sem teiknar línu
+				break;
+			}			
+		}
+		
+		
+	</script>
+</body>
+</html>
+	

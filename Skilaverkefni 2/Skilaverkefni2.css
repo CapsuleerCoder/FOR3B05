@@ -1,0 +1,54 @@
+
+
+
+
+
+body{
+    margin: 0 auto;
+    width: 1560px;
+    background-image: url("ahegao.jpg");
+    background-size: cover;
+    background-position: center;
+
+    
+}
+
+#can {
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    width: 902px;
+    height: 802px;
+}
+
+#buttons {
+    background-color: rgb(233, 78, 78);
+    width: 902px;
+    height: 35px;
+}
+
+button {
+    color: rgb(0, 0, 0);
+    background-color: whitesmoke;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
