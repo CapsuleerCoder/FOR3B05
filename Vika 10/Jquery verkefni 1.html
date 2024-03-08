@@ -1,0 +1,40 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery A</title>
+    <link rel="stylesheet" type="text/css" href="Jqery verkefni 1.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+<body>  
+
+    <h1>Smellið á takkan til að sjá meir af síðunni.</h1>
+    <br>
+    <button id="slide">Slidetakki</button>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in justo a massa semper hendrerit id quis justo. Morbi dui est, ultrices ac sagittis mollis, laoreet non nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed egestas metus, eget elementum lorem. Donec mattis interdum suscipit. Vestibulum non suscipit sapien. Proin sodales molestie feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc eget felis congue, porttitor mi a, sodales metus. Quisque lobortis in nisi quis tincidunt.</p>
+
+    <h1>Smellið á takkann til að breyta lit texta</h1>
+
+    <button id="lita">Litatakki</button>
+
+    <script>
+        $("p").hide();
+        $("#slide").click(function() {
+            $("p").slideToggle();
+        })
+        $("#lita").click(function() {
+            $("p").toggleClass("red")
+        })
+    </script>
+
+
+</body>
+</html>

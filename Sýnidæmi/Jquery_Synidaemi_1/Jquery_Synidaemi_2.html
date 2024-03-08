@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery_Synidaemi_2</title>
+	<meta charset="utf-8"/>
+	 
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	
+    <input type="text" id="message"></input>
+    <button id="send">Send</button>
+    <ul id="message_list">
+    
+    </ul>
+    
+    <script type="text/javascript">
+    
+      $('#send').click(function(){
+        var msg = $('#message').val();
+        $('#message_list').append('<li>'+msg+'</li>');
+      });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jquery_Synidaemi_3</title>
+	<meta charset="utf-8"/>
+	 
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  </script>
+</head>
+<body>
+	
+    <button id="show_chat">Click me!</button>
+
+    <div id="chat">
+      <input type="text" id="message"></input>
+      <button id="send">Senda Skilaboð</button>
+      <ul id="message_list">
+      
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+    
+      $('#chat').hide(); // gerum chattið ósýnilegt
+      $('#show_chat').click(function(){ // hengjum atburðahlustara og svarfall við #show_chat
+        $('#chat').show(); // sýnum chattið
+        $('#show_chat').hide(); // felum takkann
+      });
+
+      $('#send').click(function(){
+        var msg = $('#message').val();
+        $('#message_list').append('<li>'+msg+'</li>');
+      });
+    
+    </script>
+</body>
+</html>

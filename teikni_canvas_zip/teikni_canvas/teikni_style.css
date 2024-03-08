@@ -1,0 +1,30 @@
+body{
+    font-family: Arial, sans-serif;
+    margin-left: 25%;
+    margin-right: 25%%;
+    background-color: rgb(95, 195, 228);
+}
+
+.canvas-container{
+    text-align: center; 
+    margin-top: 20px;
+}
+
+canvas{
+    border: 5px solid #000;
+    background-color: white;
+}
+
+.controls{
+    margin-bottom: 15px;
+    margin-top: 15px; display: inline;
+    display: flex;
+    flex-direction: row;
+}
+
+button{
+    margin-right: 5px;
+}
+label{
+    margin-right: 10px; display: inline;
+}

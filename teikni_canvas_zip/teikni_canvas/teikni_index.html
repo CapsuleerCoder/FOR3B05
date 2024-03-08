@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teiknisíða</title>
+    <link rel="stylesheet" href="teikni_style.css">
+<body>
+    <div class="controls">
+        <button id="hringur">Hringur</button>
+        <button id="lina">Lína</button>
+        <button id="kassi">Kassi</button>
+        <button id="clear">Hreinsa</button>
+        <button id="undo">Undo</button>
+        <button id="redo">Redo</button>
+
+        <label for="lineWidth">Útlína:</label>
+        <select id="lineWidth">
+            <option value="1">Small</option>
+            <option value="3" selected>Medium</option>
+            <option value="5">Large</option>
+        </select>
+
+        <label class="color_selector">Litir</label>
+        <input type="color" id="color_selector" value="#000000">
+        
+        <label><input type="radio" name="fill_type" value="Filled" checked> Fyllt</label>
+        <label><input type="radio" name="fill_type" value="Unfilled"> Ófyllt</label>
+    </div>
+    <div class="canvas_container">
+        <canvas id="teikniblad" width="800" height="800"></canvas>
+    </div>
+    <script src="teikni_script.js"></script>
+</body>
+</html>

@@ -20,12 +20,13 @@
         <button id="thin">lítil þykkt</button>
         <button id="medium">venjuleg þykkt</button>
         <button id="thick">stór þykkt</button>
-        <button id="fill">Litur</button>
+        <button id="fill">fyllt</button>
         <button id="empty">Tómt</button>
         <label for="colorpicker">Velja lit:</label>
         <input type="color" id="colorpicker" value="#2525ff">
         <button id="undo">Un-do</button>
         <button id="redo">Re-do</button>
+        <button id="clean">Hreinsa</button>
     </div>
 
     <script type="text/javascript">
@@ -42,6 +43,7 @@
         var circlebutton = document.getElementById("circle")
         var linebutton = document.getElementById("line")
         var squarebutton = document.getElementById("square")
+        var cleanbutton = document.getElementById("clean")
 
         canvas.addEventListener("mousedown", Start);
         canvas.addEventListener("mouseup", add_item);
@@ -56,6 +58,7 @@
         circlebutton.addEventListener("click", Circleshape)
         linebutton.addEventListener("click", Lineshape)
         squarebutton.addEventListener("click", Squareshape)
+        cleanbutton.addEventListener("click", Clean)
 
         var action_forms = [];
         var counter = 0;
@@ -82,13 +85,16 @@
             draw() {
                 ctx.beginPath();
                 ctx.rect(this.x1, this.y1, this.w, this.h);
+                ctx.lineWidth = this.linew;
                 if (this.isFilled){
                     ctx.fillStyle = this.fill_colour;
+                    ctx.strokeStyle = this.fill_colour;
                     ctx.fill();
                 } else {
+                    ctx.strokeStyle = this.fill_colour;
                     ctx.stroke();
                 }
-                ctx.lineWidth = this.linew;
+                
                 ctx.closePath();
             }
         }
@@ -141,13 +147,16 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                ctx.lineWidth = this.linew;
                 if (this.isFilled) {
                     ctx.fillStyle = this.fill_colour;
+                    ctx.strokeStyle = this.fill_colour;
                     ctx.fill();
                 } else {
+                    ctx.strokeStyle = this.fill_colour;
                     ctx.stroke();
                 }
-                ctx.lineWidth = this.linew;
+                
                 ctx.closePath();
             }
         }
@@ -173,6 +182,11 @@
             for (let i = 0; i < counter; i++) {
                 action_forms[i].draw()
             }
+        }
+        function Clean(event){
+            ctx.clearRect(0, 0, 900, 800)
+            counter = 0 
+            clear_list()
         }
         function Fill(event){
             is_Filled = true
@@ -203,7 +217,7 @@
                     width = event.offsetX - start_x;
                     height = event.offsetY  - start_y;
                     new_square = new Square(start_x, start_y, width, height, line_width, colour, is_Filled);
-                    ctx.lineWidth = line_width
+                    //ctx.lineWidth = line_width
                     action_forms.push(new_square);
                     action_forms[counter].draw();
                     counter++;
@@ -214,18 +228,18 @@
                     let dy = event.offsetY - start_y;
                     radius = Math.sqrt(dx*dx +dy*dy);
                     new_circle = new Circle(start_x, start_y, radius, line_width, colour, is_Filled);
-                    ctx.lineWidth = line_width;
+                    //ctx.lineWidth = line_width;
                     action_forms.push(new_circle);
                     action_forms[counter].draw();
                     counter++;
                     break;
                 case "line":
                     clear_list();
-                    end_x = event.offsetX
-                    end_y = event.offsetY
-                    new_line = new Line(start_x, start_y, end_x, end_y, line.width, colour, is_Filled)
-                    ctx.lineWidth = line_width;
-                    action_forms.push(new_line)
+                    end_x = event.offsetX;
+                    end_y = event.offsetY;
+                    new_line = new Line(start_x, start_y, end_x, end_y, line_width, colour, is_Filled)
+                    //ctx.lineWidth = line_width;
+                    action_forms.push(new_line);
                     action_forms[counter].draw();
                     counter++;
                     break
