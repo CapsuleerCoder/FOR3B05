@@ -16,10 +16,10 @@ let d;
 
 // Sækja myndirnar okkar
 const ground = new Image();
-ground.src = "img/ground";
+ground.src = "Snake_Myndir_Og_Hljóð/img/ground";
 
 const apple = new Image();
-apple.src = "img/food";
+apple.src = "Snake_Myndir_Og_Hljóð/img/food";
 
 //gerum snákinn
 let snake = [];

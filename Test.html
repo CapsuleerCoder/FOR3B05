@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Platformer</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+    }
+    canvas {
+        background-color: #f0f0f0;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="gameCanvas" width="1200" height="1000"></canvas>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+const player = {
+    x: 50,
+    y: 200,
+    width: 50,
+    height: 50,
+    speed: 5,
+    velX: 0,
+    velY: 0,
+    jumping: false
+};
+
+const keys = [];
+
+window.addEventListener("keydown", function(e) {
+    keys[e.keyCode] = true;
+});
+
+window.addEventListener("keyup", function(e) {
+    delete keys[e.keyCode];
+});
+
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (keys[38] || keys[32]) {
+        // Up arrow or space
+        if (!player.jumping) {
+            player.velY = -player.speed * 2;
+            player.jumping = true;
+        }
+    }
+    if (keys[37]) {
+        // Left arrow
+        if (player.velX > -player.speed) {
+            player.velX--;
+        }
+    if (keys[39]) {
+        // Right arrow
+        if (player.velX < player.speed) {
+            player.velX++;
+        }
+    }
+    }
+
+    player.velX *= 0.9;
+    player.velY += 0.5;
+
+    player.x += player.velX;
+    player.y += player.velY;
+
+    if (player.x >= canvas.width - player.width) {
+        player.x = canvas.width - player.width;
+    } else if (player.x <= 0) {
+        player.x = 0;
+    }
+
+    if (player.y >= canvas.height - player.height) {
+        player.y = canvas.height - player.height;
+        player.jumping = false;
+    }
+
+    ctx.fillStyle = "#0000FF";
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
+
+</body>
+</html>
