@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" type ="text/css" href="index.css">
+  </head>
+  <body>
+    
+    <div id="passwordForm">
+      <input type="password" id="passwordInput" placeholder="Slá inn Leyniorð">
+      <button id="submitPassword">Ganga inn</button>
+    </div>
+
+    <div id="chatContainer" style ="display:none">
+      <div id="userbox">
+      <input id = "userinput" placeholder="Sláðu inn notandanafn"><button id="userName">Set User</button>
+      </div>
+
+      <div id="userList">
+        <h3>Active Users:</h3>
+        <ul id="userList"></ul>
+      </div>
+
+      <div id="guestCount">
+        <h3>Guest Count</h3>
+        <p id="guestCountValue">0</p>
+      </div>
+      
+      <ul id="messages"></ul>
+      <form id="form" action="">
+        <input id = "input" autocomplete="off" /><button>Send</button>
+      </form>
+      <div id="typingmessage" style="display:none"></div>
+    </div>
+  
+<!-- 
+Usernames 
+Password requirement to get on site
+user is typing functionality
+Online user List, with number of guests. Possible to log in as guest
+
+___________________________________________
+
+different chat rooms and being able to switch
+date&time on messages.  -->
+
+
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+    
+      const form = document.getElementById('form');
+      const input = document.getElementById('input');
+      const messages = document.getElementById('messages');
+      const userButton = document.getElementById("userName");
+      const userInput = document.getElementById("userinput");
+      const passwordForm = document.getElementById('passwordForm');
+      const chatContainer = document.getElementById('chatContainer');
+      const passwordInput = document.getElementById('passwordInput');
+      const submitButton = document.getElementById('submitPassword');
+      const typingmessage = document.getElementById("typingmessage");
+
+      let userName; 
+      let typingtimer;
+
+
+      input.addEventListener("keyup", () => 
+      {
+        socket.emit("typing", userName)
+        clearTimeout(typingtimer)
+        typingTimer =setTimeout(stopTyping, 2000)
+      })
+
+      socket.on("user typing", (username) =>
+      {
+        typingmessage.textContent = `${username} er að berja lyklaborðið sitt..`
+        typingmessage.style.display = "block"
+      })
+      socket.on("stop typing", () =>
+      {
+        typingmessage.style.display = "none";
+      })
+
+      function stopTyping()
+      {
+        socket.emit("stop typing")
+      }
+      submitButton.addEventListener("click", submitPassword);
+      passwordInput.addEventListener("keypress", function(event)
+      {
+        if (event.keyCode === 13)
+        {
+          submitPassword()
+        }
+      })
+      function submitPassword() {
+        const password = passwordInput.value.trim();
+        if (password === "nammi")
+        {
+          passwordForm.style.display = "none";
+          chatContainer.style.display = "block"
+        }
+        else 
+        {
+          alert("vitlaust password, rugludallurinn þinn")
+        }
+      }
+
+      userButton.addEventListener("click", setUser);
+      userInput.addEventListener("keypress", function(event)
+      {
+        if (event.keyCode === 13)
+        {
+          setUser()
+        }
+      })
+
+      function setUser()
+      {
+        (userInput.value.trim() !== "") 
+          userName = userInput.value.trim();
+          userInput.disabled = true;
+          userButton.disabled = true;
+          socket.emit("set user", userName)
+      }
+    
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (input.value && userName) {
+          socket.emit('chat message', { user: userName, message:input.value});
+          input.value = '';
+        } if (!userName) 
+        {
+          socket.emit('chat message', { user: "Gestur", message:input.value});
+          input.value = '';
+        }
+      });
+      
+      socket.on('update guest count', (count) => {
+        const guestCountValue = document.getElementById('guestCountValue');
+        guestCountValue.textContent = count.toString();
+      });
+    
+      socket.on('update users', (users) => 
+      {
+        const userList = document.getElementById('userList');
+        userList.innerHTML = '';
+        users.forEach(user => {
+          const li = document.createElement('li');
+          li.textContent = user.username;
+          userList.appendChild(li);
+          });
+      });
+
+      socket.on('chat message', (msg) => {
+        const item = document.createElement('li');
+        console.log(msg)
+        item.textContent = `${msg.user} : ${msg.message}`;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+
+  </body>
+</html>
