@@ -37,9 +37,15 @@ io.on("connection", (socket) => {
       io.emit("update guest count", guestCount);
     });
 
-    socket.on("chat message", (msg) => {
-        io.emit('chat message', msg);
-      });
+      socket.on("join room", (room) => {
+        socket.join(room);
+        socket.room = room;
+    });
+    
+    socket.on("leave room", (room) => {
+        socket.leave(room);
+        socket.room = null; 
+    });
 
     socket.on("set user", (username) => {
       const existingUser = activeUsers.find(user => user.id === socket.id);
@@ -64,6 +70,10 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("stop typing")
       }, 2000)
     })
+
+    socket.on("chat message", (msg) => {
+          io.to(socket.room).emit('chat message', msg);
+  });
 
     guestCount = io.engine.clientsCount - activeUsers.length;
     io.emit("update guest count", guestCount);

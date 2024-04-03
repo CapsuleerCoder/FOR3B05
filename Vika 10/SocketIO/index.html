@@ -15,6 +15,14 @@
     <div id="chatContainer" style ="display:none">
       <div id="userbox">
       <input id = "userinput" placeholder="Sláðu inn notandanafn"><button id="userName">Set User</button>
+      <div id="roomSelection">
+        <select id="roomSelect">
+            <option value="general">General</option>
+            <option value="room1">Room 1</option>
+            <option value="room2">Room 2</option>
+        </select>
+        <button id="joinRoom">Join Room</button>
+    </div>
       </div>
 
       <div id="userList">
@@ -39,10 +47,8 @@ Usernames
 Password requirement to get on site
 user is typing functionality
 Online user List, with number of guests. Possible to log in as guest
-
-___________________________________________
-
 different chat rooms and being able to switch
+___________________________________________
 date&time on messages.  -->
 
 
@@ -61,10 +67,16 @@ date&time on messages.  -->
       const passwordInput = document.getElementById('passwordInput');
       const submitButton = document.getElementById('submitPassword');
       const typingmessage = document.getElementById("typingmessage");
+      const roomSelect = document.getElementById('roomSelect');
+      const joinRoomButton = document.getElementById('joinRoom');
 
       let userName; 
       let typingtimer;
 
+      joinRoomButton.addEventListener('click', () => {
+          const selectedRoom = roomSelect.value;
+          socket.emit('join room', selectedRoom);
+      });
 
       input.addEventListener("keyup", () => 
       {
@@ -129,11 +141,18 @@ date&time on messages.  -->
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         if (input.value && userName) {
-          socket.emit('chat message', { user: userName, message:input.value});
+          socket.emit('chat message', { 
+            user: userName, 
+            message: input.value,
+            time: new Date().toLocaleString()  // Add current date and time
+          });
           input.value = '';
-        } if (!userName) 
-        {
-          socket.emit('chat message', { user: "Gestur", message:input.value});
+        } else {
+          socket.emit('chat message', { 
+            user: "Gestur", 
+            message: input.value,
+            time: new Date().toLocaleString()  // Add current date and time
+          });
           input.value = '';
         }
       });
@@ -157,7 +176,7 @@ date&time on messages.  -->
       socket.on('chat message', (msg) => {
         const item = document.createElement('li');
         console.log(msg)
-        item.textContent = `${msg.user} : ${msg.message}`;
+        item.textContent = `${msg.time} - ${msg.user}: ${msg.message}`;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });
