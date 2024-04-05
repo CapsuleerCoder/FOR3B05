@@ -1,23 +1,23 @@
-import express from 'express';
-import { createServer } from 'node:http';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
-import { Server } from 'socket.io';
+import express from 'express';  //importar express "middlewareið"
+import { createServer } from 'node:http'; // importar function sem gerir server
+import { fileURLToPath } from 'node:url'; //breytir file URL í file path.
+import { dirname, join } from 'node:path';  // dirname og join functions
+import { Server } from 'socket.io';     // Þetta er class, sem sem gerir server.
 
-const app = express("public");
-const server = createServer(app);
-const io = new Server(server);
+const app = express("public");      // gerir breytu sem heitir app sem er að notast við þetta express middleware
+const server = createServer(app);   // gerir server breytu með app breytunni
+const io = new Server(server);      // Gerir nýja breytu með nújum klasa af server
 
-let activeUsers = []
-let guestCount = 0;
+let activeUsers = []    //listi yfir user names
+let guestCount = 0;     //teljari fyrir guest count. 
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));  // breyta sem segir hvernig þú kemst í gögn sem notuð eru.
 
-app.use(express.static(join(__dirname, '')));
+app.use(express.static(join(__dirname, '')));   // segir "app" að nota breytu fyrir ofan til að komast í css skjalið.
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => {      // request er client að biðja server, response er server að svara          
   res.sendFile(join(__dirname, 'index.html'));
-});
+});  // client/req að tala við server/res, þegar kallað er í hann er sent _dirname/index.html
 
 io.on("connection", (socket) => {
     console.log('a user connected');
